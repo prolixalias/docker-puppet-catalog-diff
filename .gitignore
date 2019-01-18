@@ -1,6 +1,7 @@
 pkg/
 Gemfile.lock
 vendor/
+configs/ssl/
 spec/fixtures/
 .vagrant/
 .bundle/

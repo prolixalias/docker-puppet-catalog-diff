@@ -1,0 +1,16 @@
+#!/bin/bash
+
+MASTER1=${MASTER1:-puppet}
+MASTER2=${MASTER2:-$MASTER1}
+ENV1=${ENV1:-production}
+ENV2=${ENV2:-$ENV1}
+
+DATADIR="/data"
+mkdir -p $DATADIR
+
+DEFAULT_REPORT="${DATADIR}/${MASTER1}_${ENV1}_${MASTER2}_${ENV2}.json"
+REPORT="${REPORT:-$DEFAULT_REPORT}"
+
+puppet catalog diff ${MASTER1} ${MASTER2} --old_pe_branch ${ENV1} --new_pe_branch ${ENV2} --output_report ${REPORT} --debug
+
+/generate_reportlist.py
